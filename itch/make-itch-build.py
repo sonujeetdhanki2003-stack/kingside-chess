@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+"""Builds the itch.io "play in browser" zip from ../web-site.
+Usage: python3 itch/make-itch-build.py   (run from the kingside-chess-v1.5 folder)
+Output: itch/KingsideChess-HTML5.zip (index.html at the root)."""
+import os, shutil, subprocess
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC, OUT = os.path.join(ROOT, 'web-site'), os.path.join(ROOT, 'itch', 'build')
+shutil.rmtree(OUT, ignore_errors=True)
+shutil.copytree(SRC, OUT, ignore=shutil.ignore_patterns('worker.mjs', 'tab-site.json', 'sw.js', 'manifest.webmanifest', 'og.png', 'icon-maskable-512.png'))
+shutil.copy(os.path.join(ROOT, 'itch', 'itch-bridge.js'), OUT)
+# since v1.6 the web site itself ships CREDITS.txt and licenses/ (the full credits line is on every build)
+if not os.path.exists(os.path.join(OUT, 'CREDITS.txt')): shutil.copy(os.path.join(ROOT, 'CREDITS.txt'), OUT)
+if not os.path.exists(os.path.join(OUT, 'licenses')): shutil.copytree(os.path.join(ROOT, 'itch', 'licenses'), os.path.join(OUT, 'licenses'))
+def sub(fn, old, new):
+    p = os.path.join(OUT, fn); s = open(p, encoding='utf-8').read()
+    assert old in s, (fn, old); open(p, 'w', encoding='utf-8').write(s.replace(old, new))
+sub('index.html', '<link rel="apple-touch-icon" href="icon-180.png">\n', '')
+sub('index.html', '<link rel="manifest" href="manifest.webmanifest">\n', '')
+sub('index.html', '<script type="module" src="game.js"></script>', '<script src="itch-bridge.js"></script>\n<script type="module" src="game.js"></script>')
+if 'Pieces: Colin M.L. Burnett (CC BY-SA 3.0)' in open(os.path.join(OUT, 'index.html'), encoding='utf-8').read(): sub('index.html', 'Pieces: Colin M.L. Burnett (CC BY-SA 3.0)', 'Pieces: Colin M.L. Burnett (GPLv2+), Armando H. Marroquin (merida, GPLv2+), Alexis Luengas (chessnut, Apache 2.0), Maurizio Monge (fantasy &amp; spatial, MIT) · <a href="CREDITS.txt">credits</a> · <a href="https://kingside-chess-app.sites.tab.bot/" rel="noopener" target="_blank">source code</a>')
+sub('online.js', '${location.origin}/?room=', '${window.__kingsideSite || location.origin}/?room=')
+sub('tourney.js', '${location.origin}/?t=', '${window.__kingsideSite || location.origin}/?t=')
+sub('puzzles.js', '${location.origin}/?puzzle=daily', '${window.__kingsideSite || location.origin}/?puzzle=daily')
+sub('game.js', "location.href = '/?t=' + c;", "location.href = location.pathname + '?t=' + c;")
+sub('tourney.js', "location.href = '/?room=' + el.dataset.room;", "location.href = location.pathname + '?room=' + el.dataset.room;")
+sub('game.js', "if ('serviceWorker' in navigator && (", "if (!window.__kingsideItch && 'serviceWorker' in navigator && (")
+z = os.path.join(ROOT, 'itch', 'KingsideChess-HTML5.zip')
+if os.path.exists(z): os.remove(z)
+subprocess.run(['zip', '-q', '-r', '-X', z, '.'], cwd=OUT, check=True)
+print('wrote', z)

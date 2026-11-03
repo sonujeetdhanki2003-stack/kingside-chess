@@ -1,0 +1,43 @@
+Kingside Chess - credits and licences
+=====================================
+
+Kingside Chess (c) 2026 Sonujeet. The game's own code is released under the
+GNU General Public License v3 (GPLv3) because it ships with Stockfish (GPLv3).
+Full source code: https://kingside-chess-app.sites.tab.bot/ (and the "source code"
+download on the itch.io page).
+
+Chess engine
+- Stockfish 19 Lite and Stockfish 10, by the Stockfish developers
+  (https://stockfishchess.org), WebAssembly builds by Nathan Rugg (stockfish.js,
+  https://github.com/nmrugg/stockfish.js). GPLv3, see engine/COPYING.txt.
+
+Chess rules
+- chess.js by Jeff Hlywa, BSD 2-Clause licence (https://github.com/jhlywa/chess.js).
+  Copyright (c) 2025, Jeff Hlywa. Licence text is in the header of vendor/chess.js.
+
+Piece sets (taken from the Lichess project, https://github.com/lichess-org/lila)
+- Classic (cburnett): Colin M.L. Burnett, GPLv2 or later
+- Merida: Armando Hernandez Marroquin, GPLv2 or later
+- Chessnut: Alexis Luengas, Apache License 2.0 (https://github.com/LexLuengas/chessnut-pieces)
+- Fantasy and Spatial: Maurizio Monge, MIT (https://github.com/maurimo/chess-art)
+
+Data
+- Puzzles: the Lichess puzzle database (https://database.lichess.org/#puzzles), CC0 1.0
+- Opening names: lichess-org/chess-openings (https://github.com/lichess-org/chess-openings), CC0 1.0
+
+Licence texts: see the licenses/ folder (GPLv3, MIT, Apache 2.0, BSD 2-Clause).
+The GPLv2-or-later piece sets are used under the GPLv3 option.
+
+Everything else
+- Board colours, move sounds (made with code using Web Audio, with no audio files),
+  icons and layout are original to Kingside Chess. The app uses the device's own fonts.
+- The Android robot is reproduced or modified from work created and shared by Google
+  and used according to terms described in the Creative Commons 3.0 Attribution License.
+- Windows app: built with Electron (MIT) and Chromium. Their licences are in the install
+  folder (LICENSE.electron.txt, LICENSES.chromium.html).
+
+
+v1.8 Crown Shop items:
+- Piece sets "Gold & Onyx" (pieces/gold) and "Ruby & Ivory" (pieces/ruby): recoloured versions of the cburnett set by Colin M.L. Burnett (GPLv2+ / CC BY-SA 3.0), recoloured for Kingside Chess, same licence (CC BY-SA 3.0 / GPLv2+).
+- Boards "Royal Gold", "Midnight", "Sandalwood": CSS colours made for Kingside Chess (GPLv3 with the app).
+- Frames and emoji avatars: CSS made for Kingside Chess; the avatars are the phone's own emoji font.

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kingside Chess: free chess with Game Review, puzzles & friends</title>
+<meta name="description" content="Free chess for Android, Windows and the web. Play Stockfish, review every game, solve daily puzzles, Quick Match online, challenge friends and run tournaments.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Kingside Chess">
+<meta property="og:title" content="Kingside Chess: play, review, improve">
+<meta property="og:description" content="Free chess app for Android, Windows PC and the web: Stockfish 19 with 10 levels, Game Review, Puzzle Rush, daily puzzles, Quick Match, friends & chat, tournaments, 35 interactive lessons, ratings with rank titles, rating graphs and Bullet/Blitz/Rapid leaderboards, 8 bot personalities, with free Crowns 👑 and a Crown Shop, in English and Hindi. Download v1.9.0 (2.1 MB).">
+<meta property="og:url" content="https://kingside-chess-app.sites.tab.bot/">
+<meta property="og:image" content="https://kingside-chess-app.sites.tab.bot/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kingside Chess on three phones: the home screen, a game and the Daily Puzzle">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#262421">
+<link rel="icon" type="image/png" href="icon-192.png">
+<style>
+:root{--bg:#262421;--bg2:#312e2b;--card:#3a3633;--line:#4a4643;--text:#fff;--muted:#bab8b5;--green:#81b64c;--green-d:#45753c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:10;background:rgba(38,36,33,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+nav .wrap{display:flex;align-items:center;gap:10px;height:60px}
+nav img{width:34px;height:34px;border-radius:9px}
+nav b{font-size:18px;flex:1} nav b span{color:var(--green)}
+nav a.ndl{font-weight:800;font-size:15px;text-decoration:none;padding:8px 14px;border-radius:10px;background:var(--green);box-shadow:0 3px 0 var(--green-d);margin-left:8px}
+nav a.nplay{font-weight:700;font-size:15px;text-decoration:none;padding:8px 14px;border-radius:10px;background:var(--card)}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:19px;text-decoration:none;border-radius:12px;padding:16px 26px;min-height:58px;transition:transform .1s}
+.btn:active{transform:translateY(2px)}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 5px 0 var(--green-d);text-shadow:0 1px 0 rgba(0,0,0,.25)}
+.btn-dark{background:var(--card);color:#fff;box-shadow:0 5px 0 #1f1d1b}
+.btn-win{background:#2b78d0;color:#fff;box-shadow:0 5px 0 #1d5797;text-shadow:0 1px 0 rgba(0,0,0,.2)}
+.install>.card{min-width:0}
+.btn svg{width:24px;height:24px;fill:currentColor;flex:none}
+.hero{padding:44px 0 30px;overflow:hidden}
+.hero .wrap{display:grid;gap:34px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-size:14.5px;font-weight:700;color:#d6f0b8;background:rgba(129,182,76,.14);border:1px solid rgba(129,182,76,.35);border-radius:999px;padding:6px 14px 6px 6px;margin:0 0 18px}
+.pill b{background:var(--green);color:#fff;border-radius:999px;padding:2px 10px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+.also{color:var(--muted);font-size:15px;margin:18px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.07)}
+.shot{position:relative}
+.feat .shot{box-shadow:0 22px 50px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04),0 0 80px rgba(129,182,76,.12)}
+.hero h1{font-size:clamp(38px,9vw,64px);line-height:1.04;margin:0 0 14px;letter-spacing:-.02em}
+.hero h1 span{color:var(--green)}
+.hero p.tag{font-size:clamp(18px,4.6vw,22px);color:var(--muted);margin:0 0 26px;max-width:520px}
+.ctas{display:flex;flex-direction:column;gap:16px;max-width:420px}
+.meta{color:var(--muted);font-size:14px;margin:16px 0 0}
+.meta b{color:#fff}
+.ios{font-size:14px;color:var(--muted);margin:8px 0 0}
+.phones{position:relative;height:min(118vw,560px);max-width:520px;margin:0 auto;width:100%}
+.phone{position:absolute;width:48%;border-radius:28px;border:7px solid #111;background:#111;box-shadow:0 30px 60px rgba(0,0,0,.55);overflow:hidden}
+.phone img{display:block;width:100%;height:auto}
+.phone.p1{left:26%;top:0;z-index:2}
+.phone.p2{left:0;top:9%;transform:rotate(-7deg);opacity:.92}
+.phone.p3{right:0;top:9%;transform:rotate(7deg);opacity:.92}
+.stats{background:var(--bg2);border-block:1px solid rgba(255,255,255,.05)}
+.stats .wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding-block:22px;text-align:center}
+.stats div{padding:10px 4px} .stats b{display:block;font-size:24px;color:var(--green)} .stats small{color:var(--muted);font-size:14px}
+h2{font-size:clamp(28px,6.5vw,40px);margin:0 0 8px;letter-spacing:-.01em;text-align:center}
+.lead{color:var(--muted);text-align:center;margin:0 auto 34px;max-width:560px}
+.features{padding:60px 0 20px}
+.feat{display:grid;gap:22px;align-items:center;margin:0 0 56px}
+.shot{max-width:280px;margin:0 auto;border-radius:26px;border:7px solid #111;background:#111;overflow:hidden;box-shadow:0 22px 50px rgba(0,0,0,.5)}
+.shot img{display:block;width:100%;height:auto}
+.kicker{display:inline-block;color:var(--green);font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.ftext h3{font-size:clamp(24px,5.6vw,32px);line-height:1.15;margin:0 0 10px}
+.ftext p{color:var(--muted);margin:0}
+.card{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:22px}
+.section{padding:44px 0}
+.new ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.new li{display:flex;gap:12px;align-items:flex-start} .new li i{font-style:normal;flex:none;width:30px;height:30px;border-radius:9px;background:rgba(129,182,76,.16);display:grid;place-items:center}
+.install{display:grid;gap:18px}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.steps li{counter-increment:s;position:relative;padding-left:46px;min-height:34px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;display:grid;place-items:center}
+.warn{border-left:4px solid #e0a43a}
+.warn p{margin:6px 0 0;color:var(--muted)}
+details{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:14px;margin:0 0 10px}
+summary{cursor:pointer;padding:16px 18px;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--green);font-size:24px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:0;padding:0 18px 16px;color:var(--muted)}
+.faq{max-width:760px;margin:0 auto}
+.final{text-align:center;padding:56px 0;background:radial-gradient(ellipse at center,rgba(129,182,76,.14),transparent 70%)}
+.final .ctas{margin:24px auto 0}
+footer{background:#1d1b19;color:var(--muted);font-size:14px;padding:34px 0 calc(34px + env(safe-area-inset-bottom))}
+footer a{color:#fff} footer p{margin:0 0 10px}
+@media (max-width:420px){nav a.nplay{display:none}}
+@media (min-width:860px){
+  .hero .wrap{grid-template-columns:1.05fr 1fr}
+  .ctas{flex-direction:row;flex-wrap:wrap;max-width:none}
+  .stats .wrap{grid-template-columns:repeat(4,1fr)}
+  .feat{grid-template-columns:1fr 1fr;gap:60px} .feat.rev .shot{order:2}
+  .install{grid-template-columns:1.2fr 1fr}
+}
+</style></head>
+<body>
+<nav><div class="wrap"><img src="icon-192.png" alt=""><b>Kingside <span>Chess</span></b><a class="nplay" href="https://sonujeet-chess.sites.tab.bot/">Play now</a><a class="ndl" id="nav-dl" href="#download">Download</a></div></nav>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <a class="pill" href="#new"><b>New in v1.9</b> Ranks, rating graphs &amp; Bullet: climb from Bronze to Grandmaster →</a>
+    <h1>Play chess.<br><span>Get better.</span></h1>
+    <p class="tag">Play the Stockfish engine, review every game, solve daily puzzles and challenge your friends. All free, with no ads.</p>
+    <div class="ctas" id="download">
+      <a class="btn btn-green" id="dl-android" href="KingsideChess.apk" download="KingsideChess.apk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.4 11.4 0 0 0-9.84 0L5.22 5.92a.38.38 0 0 0-.66.38L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>Download for Android</a>
+      <a class="btn btn-win" id="dl-win" href="KingsideChess-Setup.exe" download="KingsideChess-Setup.exe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.1l7.4-1v7.2H3V5.1zm0 13.8l7.4 1v-7.1H3v6.1zm8.2 1.1L21 21.4v-8.6h-9.8V20zm0-15.9v7.2H21V2.6l-9.8 1.5z"/></svg>Download for Windows</a>
+      <a class="btn btn-dark" href="https://sonujeet-chess.sites.tab.bot/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play in browser</a>
+    </div>
+    <p class="meta"><b>Version 1.9.0</b> · free, no ads · Android: 2.1 MB, Android 7.0 or newer · Windows: 109 MB, Windows 10 or 11 (64-bit)</p>
+    <p class="ios">On iPhone? Tap <b>Play in browser</b>, then Share → Add to Home Screen. New on Windows? See <a href="#windows" style="color:#fff">how to install</a>.</p>
+  </div>
+  <div class="phones" aria-hidden="true">
+    <div class="phone p2"><img src="img/home.webp" width="540" height="1169" alt=""></div>
+    <div class="phone p3"><img src="img/rush.webp" width="540" height="1169" alt=""></div>
+    <div class="phone p1"><img src="img/game.webp" width="540" height="1169" alt=""></div>
+  </div>
+</div></header>
+
+<div class="stats"><div class="wrap">
+  <div><b>Stockfish 19</b><small>World-class engine</small></div>
+  <div><b>10</b><small>Computer levels</small></div>
+  <div><b>2,700+</b><small>Puzzles</small></div>
+  <div><b>0</b><small>Ads or tracking</small></div>
+</div></div>
+
+<main>
+<div class="features"><div class="wrap">
+  <h2>Everything you need to improve</h2>
+  <p class="lead">Play Stockfish 19 offline at 10 levels, play a friend on one phone, or go online. Every game is reviewed by Stockfish 19, and the opening is named live as you play.</p>
+<section class="feat">
+  <div class="shot"><img src="img/home.webp" width="540" height="1169" loading="lazy" alt="Kingside Chess home screen with Quick Match, Play Computer and Play a Friend"></div>
+  <div class="ftext"><span class="kicker">New home screen</span><h3>One tap to the game you want.</h3><p>Quick Match, Play Computer and Play a Friend are right up front, with Daily Puzzle, Puzzles, Tournaments and Review below. An unfinished game waits in a Continue card, and a tab bar takes you to Home, Play, Puzzles, Friends and More.</p></div>
+</section>
+<section class="feat rev">
+  <div class="shot"><img src="img/computer.webp" width="540" height="1169" loading="lazy" alt="Play Computer screen with 10 levels from 250 to 3000+"></div>
+  <div class="ftext"><span class="kicker">Play Computer</span><h3>10 levels, from first game to full strength.</h3><p>Stockfish 19 runs right on your phone, even offline. Pick a level from about 250 to 3000+. The lower levels play like a real person, with natural moves and the odd slip, so you can actually beat them and get better.</p></div>
+</section>
+<section class="feat">
+  <div class="shot"><img src="img/game.webp" width="540" height="1169" loading="lazy" alt="An online game with player bars, clocks, move strip and chat"></div>
+  <div class="ftext"><span class="kicker">Play</span><h3>A board that feels like the big apps.</h3><p>Your opponent sits above the board and you sit below, each with a clock. The board is full width, the last move is highlighted, and dots show where a piece can go. Moves scroll along a strip, and every action is one tap away in the toolbar.</p></div>
+</section>
+<section class="feat rev">
+  <div class="shot"><img src="img/review.webp" width="540" height="1169" loading="lazy" alt="Game Review screen"></div>
+  <div class="ftext"><span class="kicker">Game Review</span><h3>See where the game was won and lost.</h3><p>Every move gets a verdict: Brilliant, Great, Best, Good, Inaccuracy, Mistake or Blunder. You also get an eval bar, accuracy for both players, the best move drawn as an arrow, and a graph of the whole game. Step through with a swipe.</p></div>
+</section>
+<section class="feat">
+  <div class="shot"><img src="img/puzzle.webp" width="540" height="1169" loading="lazy" alt="Daily & rated puzzles screen"></div>
+  <div class="ftext"><span class="kicker">Daily & rated puzzles</span><h3>A new puzzle every day, the same for everyone.</h3><p>Puzzle mode adds 2,700+ real-game puzzles from beginner to master. Your puzzle rating goes up and down as you solve, and you get hints, streaks and a share button for the daily one.</p></div>
+</section>
+<section class="feat rev">
+  <div class="shot"><img src="img/rush.webp" width="540" height="1169" loading="lazy" alt="Puzzle Rush screen with timer, score and strikes"></div>
+  <div class="ftext"><span class="kicker">Puzzle Rush</span><h3>3 minutes. As many puzzles as you can.</h3><p>The puzzles get harder as you go, and three wrong answers ends the run. Beat your best score and see where you stand on today’s and the all-time leaderboard.</p></div>
+</section>
+<section class="feat">
+  <div class="shot"><img src="img/achievements.webp" width="540" height="1169" loading="lazy" alt="Streak and achievement badges screen"></div>
+  <div class="ftext"><span class="kicker">Streaks &amp; achievements</span><h3>Keep the flame alive.</h3><p>Play a game or solve the Daily Puzzle to grow your 🔥 streak. Unlock 19 badges along the way: your first win, beating level 8, a 7-day streak, 20+ in Puzzle Rush, winning a tournament, finding a brilliant move and more.</p></div>
+</section>
+<section class="feat rev">
+  <div class="shot"><img src="img/hindi.webp" width="540" height="1169" loading="lazy" alt="Kingside Chess home screen in Hindi"></div>
+  <div class="ftext"><span class="kicker">हिन्दी में भी</span><h3>Play in English or Hindi.</h3><p>Switch the whole app to हिन्दी from More → Language, including Game Review. If your phone is set to Hindi, the app offers it on its own.</p></div>
+</section>
+<section class="feat">
+  <div class="shot"><img src="img/quick.webp" width="540" height="1169" loading="lazy" alt="Quick Match screen"></div>
+  <div class="ftext"><span class="kicker">Quick Match</span><h3>One tap and you’re playing.</h3><p>Pick a time control and get paired with someone online near your rating. If nobody’s free within 30 seconds, it offers a game against the computer instead.</p></div>
+</section>
+<section class="feat rev">
+  <div class="shot"><img src="img/profile.webp" width="540" height="1169" loading="lazy" alt="Accounts, ratings & history screen"></div>
+  <div class="ftext"><span class="kicker">Accounts, ratings & history</span><h3>Your chess, saved.</h3><p>Sign up with just a username and password. No email needed, and recovery codes get you back in. You get a rating graph, win rate and every game you’ve played, each one ready to review.</p></div>
+</section>
+<section class="feat">
+  <div class="shot"><img src="img/chat.webp" width="540" height="1169" loading="lazy" alt="Friends, challenges & chat screen"></div>
+  <div class="ftext"><span class="kicker">Friends, challenges & chat</span><h3>Play the people you know.</h3><p>Add friends, see who’s online and send a challenge. In the game you can chat with quick buttons like Good luck! 👍 😂 Good game!</p></div>
+</section>
+<section class="feat rev">
+  <div class="shot"><img src="img/bracket.webp" width="540" height="1169" loading="lazy" alt="Tournaments screen"></div>
+  <div class="ftext"><span class="kicker">Tournaments</span><h3>Run a tournament for your group.</h3><p>Choose round-robin or knockout. Share one WhatsApp link to bring everyone in, then follow live standings and the bracket until a champion is crowned.</p></div>
+</section>
+<section class="feat">
+  <div class="shot"><img src="img/themes.webp" width="540" height="1169" loading="lazy" alt="Make it yours screen"></div>
+  <div class="ftext"><span class="kicker">Make it yours</span><h3>Boards, pieces, premoves, arrows.</h3><p>Choose from 6 board colours and 5 piece sets. Premove while your opponent thinks, and draw arrows to plan, like the pros do.</p></div>
+</section>
+</div></div>
+
+<div class="section"><div class="wrap">
+  <div class="card new" id="new">
+    <h2 style="text-align:left">What’s new in v1.9: ranks &amp; rating graphs 🏅</h2>
+    <p class="lead" style="text-align:left;margin:0 0 18px">Every rated game now moves you up a ladder from Bronze to Grandmaster, and your profile shows how you got there. Install it over your old version and your games, ratings, Crowns and settings stay.</p>
+    <ul>
+      <li><i>📈</i><span><b>Rating change after every game:</b> see "+8" in green or "−12" in red as your new rating counts up, and the change is also shown in your game history</span></li>
+      <li><i>🏅</i><span><b>Rank titles:</b> Bronze, Silver, Gold, Platinum, Diamond, Master and Grandmaster, shown on your profile, the leaderboard and beside the names in a game, with a "Promoted to Gold!" celebration when you climb</span></li>
+      <li><i>📊</i><span><b>Rating graph:</b> Bullet, Blitz and Rapid tabs, last 30 days, 90 days or all time, with your peak marked</span></li>
+      <li><i>🚀</i><span><b>Bullet:</b> 1+0 and 2+1 in Quick Match with its own rating. New players show "1500?" until their rating settles (10 rated games)</span></li>
+      <li><i>⚡</i><span><b>v1.8.3:</b> the Quick Match timer now ticks every second (it used to jump 0:06, 0:13…), and the search keeps running while you explore the app: a bar at the top shows the time, and "Match found!" pops up on any screen with Play now or Decline.</span></li>
+      <li><i>🛠️</i><span><b>v1.8.2 fixes:</b> the Gold &amp; Onyx and Ruby &amp; Ivory piece sets now show on the game board, your worn avatar shows on the home screen and in your games, locked bots show their Crown price, long names fit, and Back closes menus on the website.</span></li>
+      <li><i>🛠️</i><span><b>v1.8.1 fixes:</b> every avatar now shows its Crown price in the Shop and can be bought and worn, and the board, piece set, avatar and frame you are using are now clearly marked ✓</span></li>
+    </ul>
+    <p class="also">Also in v1.8: Crowns 👑, earned free (daily login, streaks, beating bots, rated games, puzzles, lessons) and spent in the Crown Shop on boards, piece sets, frames, avatars and bots. In v1.7: ratings + leaderboards, 8 bot personalities, share your game as a GIF, daily streaks and reminders. In v1.6: Learn, 35 interactive lessons from basics to endgames. In v1.5: a more accurate Game Review using Lichess’s own rules and accuracy formula. In v1.4: Stockfish 19 with 10 levels, Puzzle Rush, streaks, 19 achievements, Hindi and instant chat. In v1.3: the chess.com-style redesign.</p>
+  </div>
+</div></div>
+
+<div class="section" id="install"><div class="wrap install">
+  <div class="card">
+    <h2 style="text-align:left">Install on Android</h2>
+    <p class="lead" style="text-align:left;margin:0 0 18px">Takes about a minute. The app isn’t on the Play Store, so Android will ask you once to allow it.</p>
+    <ol class="steps">
+      <li>Tap <b>Download for Android</b>. If Chrome asks, tap <b>Download anyway</b>.</li>
+      <li>Open the file from the notification, or from Files → Downloads.</li>
+      <li>If you see “installs from this source aren’t allowed”, tap <b>Settings</b>, turn on <b>Allow from this source</b>, then go back.</li>
+      <li>Tap <b>Install</b>, then <b>Open</b>. Done!</li>
+    </ol>
+  </div>
+  <div class="card warn">
+    <b>Play Protect warning?</b>
+    <p>Google Play Protect may say the app is unknown, because it isn’t from the Play Store. Tap <b>More details → Install anyway</b>. If it offers to scan the app, you can let it. Every version is signed with the same key, so updates install over the top.</p>
+    <p style="margin-top:14px"><a class="btn btn-green" style="font-size:17px;min-height:50px;padding:12px 20px" href="KingsideChess.apk" download="KingsideChess.apk">Download v1.9.0 (2.1 MB)</a></p>
+  </div>
+</div></div>
+
+<div class="section" id="windows"><div class="wrap install">
+  <div class="card">
+    <h2 style="text-align:left">Install on Windows</h2>
+    <p class="lead" style="text-align:left;margin:0 0 18px">A real Windows app with its own window, Start menu entry and desktop shortcut. Windows 10 or 11, 64-bit.</p>
+    <ol class="steps">
+      <li>Click <b>Download for Windows</b> (109 MB).</li>
+      <li>Open <b>KingsideChess-Setup.exe</b> from your Downloads.</li>
+      <li>If a blue “Windows protected your PC” box appears, click <b>More info</b>, then <b>Run anyway</b>.</li>
+      <li>Click <b>Next</b> and <b>Install</b>. Kingside Chess opens when it’s done, and it’s on your desktop and in the Start menu.</li>
+    </ol>
+  </div>
+  <div class="card warn">
+    <b>“Unknown publisher” warning?</b>
+    <p>Windows SmartScreen shows this for apps that aren’t from the Microsoft Store and don’t have a paid code-signing certificate. Click <b>More info → Run anyway</b>. The app plays the computer offline, and online games, friends and tournaments are shared with Android and browser players.</p>
+    <p style="margin-top:14px"><a class="btn btn-win" style="font-size:17px;min-height:50px;padding:12px 20px;white-space:normal" href="KingsideChess-Setup.exe" download="KingsideChess-Setup.exe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.1l7.4-1v7.2H3V5.1zm0 13.8l7.4 1v-7.1H3v6.1zm8.2 1.1L21 21.4v-8.6h-9.8V20zm0-15.9v7.2H21V2.6l-9.8 1.5z"/></svg>Download v1.9.0 (109 MB)</a></p>
+    <p style="margin-top:14px">Prefer not to install anything? Open <a href="https://sonujeet-chess.sites.tab.bot/">the web version</a> in Chrome or Edge and click the install icon at the right of the address bar. It opens in its own window like an app.</p>
+  </div>
+</div></div>
+
+<div class="section"><div class="wrap faq">
+  <h2>Questions</h2>
+  <p class="lead">Short answers.</p>
+  <details><summary>Is it really free?</summary><p>Yes. There are no ads, no subscriptions and no in-app purchases.</p></details>
+  <details><summary>Does it work offline?</summary><p>Yes. Playing the computer, playing a friend on the same device and Game Review work with no internet in the Android and Windows apps, because the engine runs on your device. Online games, Quick Match, friends and tournaments need a connection.</p></details>
+  <details><summary>Is there a PC version?</summary><p>Yes, for Windows 10 and 11. Click <b>Download for Windows</b> and follow <a href="#windows">these steps</a>. On a Mac or Linux, or if you’d rather not install, use <a href="https://sonujeet-chess.sites.tab.bot/">the web version</a>; in Chrome or Edge you can install it from the address bar.</p></details>
+  <details><summary>Is there an iPhone app?</summary><p>Not yet. Open <a href="https://sonujeet-chess.sites.tab.bot/">the web version</a> in Safari and tap Share → Add to Home Screen. It works like an app, and online games are shared with Android players.</p></details>
+  <details><summary>Do I need an account?</summary><p>No. You can play everything as a guest. An account (just a username and password, no email) keeps your rating, puzzle progress and game history, and lets you add friends.</p></details>
+  <details><summary>I forgot my password.</summary><p>When you sign up you get 6 one-time recovery codes. On the sign-in screen, tap “Forgot password” and enter one to set a new password. Keep the codes somewhere safe.</p></details>
+  <details><summary>How strong is the computer?</summary><p>It has 10 levels, from Beginner (about 250 rating) to Maximum (3000+), which is full-strength Stockfish 19 and stronger than any human. Levels 1 to 5 play like real people, with natural moves and the occasional mistake, so they’re great for learning.</p></details>
+  <details><summary>How do I update?</summary><p>Download the new version from this page and install it over the old one. Your games and settings stay.</p></details>
+</div></div>
+
+<div class="section"><div class="wrap" style="max-width:760px">
+  <div class="card">
+    <h2 style="text-align:left;font-size:26px">Privacy</h2>
+    <p style="color:var(--muted);margin:8px 0 0">There are no ads, no trackers and no analytics. Guest games stay on your phone. If you make an account, the server stores your username, a securely hashed password, your ratings, your games and your friends list. We never ask for your email or phone number. Chat messages are kept with their game. You can delete your account and everything in it at any time from Profile → Settings.</p>
+  </div>
+</div></div>
+
+<div class="final"><div class="wrap">
+  <h2>Ready to play?</h2>
+  <p class="lead" style="margin-bottom:0">Free on Android, Windows and in your browser.</p>
+  <div class="ctas" style="justify-content:center">
+    <a class="btn btn-green" href="KingsideChess.apk" download="KingsideChess.apk">Download for Android</a>
+    <a class="btn btn-win" href="KingsideChess-Setup.exe" download="KingsideChess-Setup.exe">Download for Windows</a>
+    <a class="btn btn-dark" href="https://sonujeet-chess.sites.tab.bot/">Play in browser</a>
+  </div>
+</div></div>
+</main>
+
+<footer><div class="wrap">
+  <p><b style="color:#fff">Kingside Chess</b> · version 1.9.0</p>
+  <p class="sums" style="font-size:12px;word-break:break-all;opacity:.75">SHA-256 · Android APK: 745b2a63cd48808b1c921db9c0cc0455f7a09628a1746a7b9727243dd192939c · Windows installer: bc86b1c92c623e1cd772a3be8bc07a745c0f0195dbdfe6b53d3b6aba997f08fc · source: listed on the download page</p>
+  <p>Built on open source. The chess engine is <a href="https://stockfishchess.org/">Stockfish</a> (GPLv3), and so Kingside Chess is open source too: <a href="kingside-chess-source.zip" download>download the full source code</a>. The puzzles and opening names come from the <a href="https://database.lichess.org/">Lichess open database</a> and <a href="https://github.com/lichess-org/chess-openings">chess-openings</a> (CC0). The piece sets come from the Lichess project: cburnett and merida (GPL), chessnut (Apache 2.0), fantasy and spatial (MIT). Move rules come from chess.js (BSD).</p>
+  <p>© 2026 Kingside Chess</p>
+</div></footer>
+<script>
+(function(){var ua=navigator.userAgent||'',w=/Windows NT/.test(ua),a=/Android/.test(ua),n=document.getElementById('nav-dl');
+if(w){var c=document.getElementById('download'),b=document.getElementById('dl-win');if(c&&b)c.insertBefore(b,c.firstChild);if(n){n.href='KingsideChess-Setup.exe';n.setAttribute('download','KingsideChess-Setup.exe');}}
+else if(a&&n){n.href='KingsideChess.apk';n.setAttribute('download','KingsideChess.apk');}})();
+</script>
+</body></html>

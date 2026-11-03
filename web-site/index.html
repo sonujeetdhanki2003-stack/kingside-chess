@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kingside Chess — Play Stockfish or a Friend</title>
+<meta name="description" content="A beautiful, free chess game. Play the Stockfish engine from Beginner to Master, a friend on the same phone, a friend online, or run a tournament for your friends. Full rules, clocks, hints and undo.">
+<meta name="theme-color" content="#0f1115">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kingside Chess">
+<meta property="og:title" content="Kingside Chess — Play Stockfish or a Friend">
+<meta property="og:description" content="Free, beautiful chess in your browser. Play a friend online with a link, run a tournament for your friends, or take on Stockfish. Clocks, hints and undo.">
+<meta property="og:url" content="https://sonujeet-chess.sites.tab.bot/">
+<meta property="og:image" content="https://sonujeet-chess.sites.tab.bot/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kingside Chess — Play Stockfish or a Friend">
+<meta name="twitter:description" content="Free, beautiful chess in your browser. Play a friend online with a link, run a tournament for your friends, or take on Stockfish. Clocks, hints and undo.">
+<meta name="twitter:image" content="https://sonujeet-chess.sites.tab.bot/og.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Kingside">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="game.css">
+<link rel="stylesheet" href="ui.css">
+<link rel="modulepreload" href="vendor/chess.js">
+<script type="module" src="game.js"></script>
+</head>
+<body class="theme-emerald view-home">
+<header class="topbar">
+  <button class="icon-btn tb-home" id="btn-home" type="button" aria-label="Back to home" title="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z"/></svg></button>
+  <a class="brand" href="./" aria-label="Kingside Chess home">
+    <img src="pieces/wN.svg" alt="" width="30" height="30">
+    <span>Kingside<em>Chess</em></span>
+  </a>
+  <nav class="top-actions" aria-label="Game menu">
+    <button class="icon-btn icon-trophy" id="btn-puzzle-top" type="button" aria-label="Puzzles" title="Puzzles"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.7 2.7 0 0 1 0 5.4H2V20a2 2 0 0 0 2 2h3.8v-1.5a2.7 2.7 0 0 1 5.4 0V22H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg></button>
+    <button class="icon-btn icon-trophy" id="btn-trophy" type="button" aria-label="Tournaments" title="Tournaments"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v2h3v3a4 4 0 0 1-4 4h-.3A5 5 0 0 1 13 14.9V18h3v3H8v-3h3v-3.1A5 5 0 0 1 8.3 12H8a4 4 0 0 1-4-4V5h3V3zm0 4H6v1a2 2 0 0 0 1 1.7V7zm10 0v2.7A2 2 0 0 0 18 8V7h-1z"/></svg></button>
+    <button class="icon-btn icon-sound" id="btn-sound" type="button" aria-label="Sound on" title="Sound"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="ico-on" d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/><path class="ico-off" d="M4 9v6h4l5 4V5L8 9H4zm12.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4L13.8 12l-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4z"/></svg></button>
+    <button class="icon-btn" id="btn-settings" type="button" aria-label="Board settings" title="Settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 13a7.5 7.5 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.4 7.4 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.4 7.4 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7.5 7.5 0 0 0 0 2l-2 1.6 2 3.4 2.4-1c.5.4 1.1.8 1.7 1l.4 2.5h4l.4-2.5c.6-.2 1.2-.6 1.7-1l2.4 1 2-3.4-2-1.6zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg></button>
+    <button class="btn btn-gold btn-new" id="btn-new" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><span>New game</span></button>
+    <button class="crown-chip" id="btn-crowns" type="button" aria-label="Crowns, open the Crown Shop" title="Crown Shop"><span aria-hidden="true">👑</span><b data-crowns>0</b></button>
+    <button class="icon-btn btn-account" id="btn-account" type="button" aria-label="Sign in" title="Profile"></button>
+  </nav>
+</header>
+
+<section class="hub" id="hub" aria-label="Home">
+  <div class="hub-in">
+  <div class="lang-suggest" id="lang-suggest" hidden data-i18n-skip><span>हिन्दी में खेलना चाहेंगे?</span><button type="button" class="btn btn-gold btn-sm" data-lang="hi">हिन्दी</button><button type="button" class="btn btn-ghost btn-sm" data-lang="en">English</button></div>
+  <button type="button" class="hub-hello" id="hub-hello">
+    <span class="hub-av" id="hub-av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-9 2.2-9 5v3h18v-3c0-2.8-4.6-5-9-5z"/></svg></span>
+    <span class="hub-who"><b id="hub-greet">Welcome to Kingside</b><small id="hub-sub">Playing as a guest · tap to sign in</small></span>
+    <span class="hub-streak off" id="hub-streak" title="Daily streak"><span aria-hidden="true">🔥</span><b id="hub-streak-n">0</b></span>
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg>
+  </button>
+
+  <button type="button" class="streak-card" id="streak-card" aria-label="Daily streak">
+    <span class="sc-fire" aria-hidden="true">🔥</span>
+    <span class="sc-main"><b id="sc-title">Start a streak today</b><small id="sc-sub">Play a game, finish a lesson or solve the daily puzzle</small></span>
+    <span class="sc-week" id="sc-week" aria-hidden="true"></span>
+  </button>
+  <button type="button" class="hub-continue" id="hub-continue" hidden>
+    <span class="hc-board" id="hc-board" aria-hidden="true"></span>
+    <span class="hc-text"><small>Continue</small><b id="hc-title">Your game</b><span id="hc-sub"></span></span>
+    <span class="hc-go">Resume</span>
+  </button>
+
+  <div class="play-cards" role="group" aria-label="Play">
+    <button type="button" class="pcard pcard-main" id="btn-quick">
+      <span class="pc-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg></span>
+      <span class="pc-t"><b>Quick Match</b><small>Play anyone online near your rating</small></span><svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg>
+    </button>
+    <div class="pcard-row">
+      <button type="button" class="pcard" id="btn-computer">
+        <span class="pc-ic pc-bot"><img src="pieces/wN.svg" alt=""></span>
+        <span class="pc-t"><b>Play Computer</b><small>8 bots · 10 levels</small></span>
+      </button>
+      <button type="button" class="pcard" id="btn-online">
+        <span class="pc-ic pc-friend"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12c0-1.7 1.4-3.1 3.1-3.1h4V7H7a5 5 0 0 0 0 10h4v-1.9H7A3.1 3.1 0 0 1 3.9 12zM8 13h8v-2H8v2zm9-6h-4v1.9h4a3.1 3.1 0 0 1 0 6.2h-4V17h4a5 5 0 0 0 0-10z"/></svg></span>
+        <span class="pc-t"><b>Play a Friend</b><small>Send a link</small></span>
+      </button>
+    </div>
+  </div>
+
+  <h2 class="hub-h">Train &amp; compete</h2>
+  <div class="tiles">
+    <button type="button" class="tile t-learn tile-wide" id="btn-learn"><span class="tl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></span><span class="tw-t"><b>Learn chess</b><small id="learn-sub">35 interactive lessons</small><span class="tw-bar"><i id="learn-bar"></i></span></span><span class="tw-go" id="learn-go">Start</span></button>
+    <button type="button" class="tile t-shop tile-wide" id="btn-shop"><span class="tl-ic tl-crown" aria-hidden="true">👑</span><b>Crown Shop</b><small id="shop-sub">Boards, pieces, frames</small></button>
+    <button type="button" class="tile t-daily" id="btn-daily"><span class="tl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V9h14v11zM7 11h5v5H7z"/></svg></span><b>Daily Puzzle</b><small id="daily-sub">Today’s challenge</small></button>
+    <button type="button" class="tile t-puz" id="btn-puzzles"><span class="tl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.7 2.7 0 0 1 0 5.4H2V20a2 2 0 0 0 2 2h3.8v-1.5a2.7 2.7 0 0 1 5.4 0V22H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg></span><b>Puzzles</b><small id="puzzle-sub">Rating 1200</small></button>
+    <button type="button" class="tile t-rush" id="btn-rush"><span class="tl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span><b>Puzzle Rush</b><small id="rush-sub">3 minutes · 3 strikes</small></button>
+    <button type="button" class="tile t-tour" id="btn-tourney"><span class="tl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v2h3v3a4 4 0 0 1-4 4h-.3A5 5 0 0 1 13 14.9V18h3v3H8v-3h3v-3.1A5 5 0 0 1 8.3 12H8a4 4 0 0 1-4-4V5h3V3zm0 4H6v1a2 2 0 0 0 1 1.7V7zm10 0v2.7A2 2 0 0 0 18 8V7h-1z"/></svg></span><b>Tournaments</b><small>Play your friends</small></button>
+    <button type="button" class="tile t-rev" id="btn-hub-review"><span class="tl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg></span><b>Game Review</b><small id="review-sub">Learn from your games</small></button>
+    <button type="button" class="tile t-lb" id="btn-leaders"><span class="tl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4h4v17h-4zM3 11h4v10H3zm14-4h4v14h-4z"/></svg></span><b>Leaderboard</b><small id="lb-sub">Top players · your rank</small></button>
+    <button type="button" class="tile t-ach" id="btn-ach"><span class="tl-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6z"/></svg></span><b>Achievements</b><small id="ach-sub">0 of 19 badges</small></button>
+  </div>
+  <p class="credits">Engines: <a href="https://github.com/nmrugg/stockfish.js" rel="noopener">Stockfish.js</a> 10 &amp; 19 Lite (GPLv3, <a href="engine/COPYING.txt">license</a>) · Openings &amp; puzzles: <a href="https://lichess.org" rel="noopener">Lichess</a> (CC0) · Rules: <a href="https://github.com/jhlywa/chess.js" rel="noopener">chess.js</a> · Pieces: Colin M.L. Burnett (GPLv2+), Armando H. Marroquin (merida, GPLv2+), Alexis Luengas (chessnut, Apache 2.0), Maurizio Monge (fantasy &amp; spatial, MIT) · <a href="CREDITS.txt">credits</a> · <a href="https://kingside-chess-app.sites.tab.bot/" rel="noopener" target="_blank">source code</a></p>
+  </div>
+</section>
+
+<main class="app" id="app">
+  <section class="board-col" aria-label="Chess board">
+    <div class="player" id="player-top">
+      <div class="avatar" id="avatar-top"></div>
+      <div class="pinfo">
+        <div class="pname" id="name-top">Stockfish</div>
+        <div class="captured" id="captured-top" aria-label="Captured pieces"></div>
+      </div>
+      <div class="clock" id="clock-top" hidden>--:--</div>
+      <div class="chat-pop" id="chat-pop" hidden></div>
+    </div>
+
+    <div class="board-wrap">
+      <div class="board" id="board" role="grid" aria-label="Chess board">
+        <div class="squares" id="squares"></div>
+        <div class="pieces" id="pieces"></div>
+        <svg class="arrows" id="arrows" viewBox="0 0 800 800" aria-hidden="true"></svg>
+        <div class="promo" id="promo" hidden>
+          <div class="promo-card" role="dialog" aria-label="Choose promotion piece">
+            <p>Promote to</p>
+            <div class="promo-choices" id="promo-choices"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player" id="player-bottom">
+      <div class="avatar" id="avatar-bottom"></div>
+      <div class="pinfo">
+        <div class="pname" id="name-bottom">You</div>
+        <div class="captured" id="captured-bottom" aria-label="Captured pieces"></div>
+      </div>
+      <div class="clock" id="clock-bottom" hidden>--:--</div>
+    </div>
+  </section>
+
+  <aside class="panel" aria-label="Game panel">
+    <div class="moves-card">
+      <div class="moves-head"><span>Moves</span><span id="opening" class="opening"></span></div>
+      <ol class="moves" id="moves" aria-label="Move list"></ol>
+    </div>
+    <div class="status-card">
+      <div class="status" id="status" role="status" aria-live="polite">Loading…</div>
+      <div class="substatus" id="substatus"></div>
+      <div class="offer-bar" id="offer-bar" hidden>
+        <span id="offer-text"></span>
+        <span class="offer-btns"><button type="button" class="btn btn-ghost btn-sm" id="offer-no">Decline</button><button type="button" class="btn btn-gold btn-sm" id="offer-yes">Accept</button></span>
+      </div>
+    </div>
+    <button type="button" class="btn btn-online btn-tback" id="btn-tback">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v2h3v3a4 4 0 0 1-4 4h-.3A5 5 0 0 1 13 14.9V18h3v3H8v-3h3v-3.1A5 5 0 0 1 8.3 12H8a4 4 0 0 1-4-4V5h3V3zm0 4H6v1a2 2 0 0 0 1 1.7V7zm10 0v2.7A2 2 0 0 0 18 8V7h-1z"/></svg>
+      Back to tournament
+    </button>
+    <div class="chat-card" id="chat-card">
+      <div class="chat-head"><span>💬 Chat</span><button type="button" class="chat-min" id="chat-min" aria-label="Hide chat">–</button></div>
+      <ol class="chat-log" id="chat-log" aria-live="polite"></ol>
+      <div class="chat-quick" id="chat-quick">
+        <button type="button">👋 Hi!</button><button type="button">Good luck!</button><button type="button">👍</button><button type="button">😂</button><button type="button">😮</button><button type="button">🔥 Nice move!</button><button type="button">😅 Oops</button><button type="button">🤝 Good game!</button>
+      </div>
+      <form class="chat-form" id="chat-form" autocomplete="off"><input id="chat-input" maxlength="160" placeholder="Message…" aria-label="Chat message"><button class="btn btn-gold btn-sm" type="submit">Send</button></form>
+    </div>
+    <div class="controls" role="toolbar" aria-label="Game controls">
+      <button class="ctl" id="btn-undo" type="button" aria-label="Undo move"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 8c-2.6 0-5 1-6.9 2.6L2 7v9h9l-3.6-3.6A8 8 0 0 1 20.1 16l2.4-.8A10.5 10.5 0 0 0 12.5 8z"/></svg><span>Undo</span></button>
+      <button class="ctl" id="btn-hint" type="button" aria-label="Show a hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21h6v-1H9v1zm3-19a7 7 0 0 0-4 12.7V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 2z"/></svg><span>Hint</span></button>
+      <button class="ctl" id="btn-review" type="button" aria-label="Game review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg><span>Review</span></button>
+      <button class="ctl" id="btn-flip" type="button" aria-label="Flip board"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 17.01V10h-2v7.01h-3L15 21l4-3.99h-3zM9 3 5 6.99h3V14h2V6.99h3L9 3z"/></svg><span>Flip</span></button>
+      <button class="ctl online-ctl" id="btn-draw" type="button" aria-label="Offer a draw"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16v2H4zm0 4h16v2H4z"/></svg><span>Draw</span></button>
+      <button class="ctl online-ctl" id="btn-invite" type="button" aria-label="Invite and game code"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.8-3.5a3 3 0 0 0 0-1.4l6.8-3.5A3 3 0 1 0 15 7l-6.8 3.5a3 3 0 1 0 0 3L15 17a3 3 0 1 0 3-1z"/></svg><span>Invite</span></button>
+      <button class="ctl online-ctl" id="btn-chat" type="button" aria-label="Chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z" transform="translate(-1 0)"/></svg><span>Chat</span><i class="chat-badge" id="chat-badge" hidden></i></button>
+      <button class="ctl ctl-danger" id="btn-resign" type="button" aria-label="Resign"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.4 6 14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg><span>Resign</span></button>
+    </div>
+  </aside>
+</main>
+
+<nav class="tabbar" id="tabbar" aria-label="Main">
+  <button type="button" data-tab="home" class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Home</span></button>
+  <button type="button" data-tab="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3.5 3.5 0 0 0-2.2 6.2C8.7 9 8 10.2 8 11.5h2.2l-.9 5H7.5V19h-1v3h11v-3h-1v-2.5h-1.8l-.9-5H16c0-1.3-.7-2.5-1.8-3.3A3.5 3.5 0 0 0 12 2z"/></svg><span>Play</span></button>
+  <button type="button" data-tab="learn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg><span>Learn</span></button>
+  <button type="button" data-tab="puzzles"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.7 2.7 0 0 1 0 5.4H2V20a2 2 0 0 0 2 2h3.8v-1.5a2.7 2.7 0 0 1 5.4 0V22H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg><span>Puzzles</span></button>
+  <button type="button" data-tab="friends"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0h-1c1.2.8 2 2 2 3.5V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg><span>Friends</span></button>
+  <button type="button" data-tab="more"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg><span>More</span></button>
+</nav>
+
+<!-- More menu -->
+<div class="sheet-backdrop" id="sheet-more" hidden>
+  <div class="sheet more" role="dialog" aria-modal="true" aria-labelledby="more-title">
+    <h2 id="more-title">More</h2>
+    <div class="m-list">
+      <button type="button" class="m-row" data-more="profile"><span class="m-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-9 2.2-9 5v3h18v-3c0-2.8-4.6-5-9-5z"/></svg></span><span class="m-t"><b>Profile</b><small id="more-profile-sub">Sign in or create an account</small></span><svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg></button>
+      <button type="button" class="m-row" data-more="history"><span class="m-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3a9 9 0 0 0-9 9H1l3.9 3.9L9 12H6a7 7 0 1 1 2 5l-1.4 1.4A9 9 0 1 0 13 3zm-1 5v5l4.3 2.5.7-1.2-3.5-2.1V8z"/></svg></span><span class="m-t"><b>Game history</b><small>Replay and review past games</small></span><svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg></button>
+      <button type="button" class="m-row" data-more="shop"><span class="m-ic m-ic-crown" aria-hidden="true">👑</span><span class="m-t"><b>Crown Shop</b><small>Boards, pieces, frames, bots</small></span></button>
+      <button type="button" class="m-row" data-more="crowns"><span class="m-ic m-ic-crown" aria-hidden="true">📜</span><span class="m-t"><b>Crown history</b><small>Every Crown earned and spent</small></span></button>
+      <button type="button" class="m-row" data-more="settings"><span class="m-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 13a7.5 7.5 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.4 7.4 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.4 7.4 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7.5 7.5 0 0 0 0 2l-2 1.6 2 3.4 2.4-1c.5.4 1.1.8 1.7 1l.4 2.5h4l.4-2.5c.6-.2 1.2-.6 1.7-1l2.4 1 2-3.4-2-1.6zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></svg></span><span class="m-t"><b>Board &amp; pieces</b><small>Themes, piece sets, premoves</small></span><svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg></button>
+      <button type="button" class="m-row" data-more="sound"><span class="m-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></span><span class="m-t"><b>Move sounds</b><small id="more-sound-sub">On</small></span><span class="m-switch" id="more-sound" aria-hidden="true"></span></button>
+      <div class="m-row m-lang" role="group" aria-label="Language"><span class="m-ic m-ic-lang" aria-hidden="true">अ</span><span class="m-t"><b data-i18n-skip>Language · भाषा</b></span><span class="lang-seg"><button type="button" data-lang="en" data-i18n-skip>English</button><button type="button" data-lang="hi" data-i18n-skip>हिन्दी</button></span></div>
+    </div>
+    <h3 class="m-h">More ways to play</h3>
+    <div class="m-list">
+      <button type="button" class="m-row" data-more="pvp"><span class="m-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0h-1c1.2.8 2 2 2 3.5V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg></span><span class="m-t"><b>2 Players</b><small>Pass and play on this phone</small></span><svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg></button>
+      <button type="button" class="m-row" data-more="join"><span class="m-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm9 7H8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2V8h2v2zm3 3h-2v-2h2v2zm0-3h-2V8h2v2z"/></svg></span><span class="m-t"><b>Join with a code</b><small>Enter a friend’s game code</small></span><svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg></button>
+      <button type="button" class="m-row" data-more="tourney"><span class="m-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v2h3v3a4 4 0 0 1-4 4h-.3A5 5 0 0 1 13 14.9V18h3v3H8v-3h3v-3.1A5 5 0 0 1 8.3 12H8a4 4 0 0 1-4-4V5h3V3zm0 4H6v1a2 2 0 0 0 1 1.7V7zm10 0v2.7A2 2 0 0 0 18 8V7h-1z"/></svg></span><span class="m-t"><b>Tournaments &amp; organizer</b><small>Create, join or run a tournament</small></span><svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg></button>
+      <button type="button" class="m-row" data-more="leaders"><span class="m-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10h4v10H4zm6 0V4h4v16h-4zm6 0v-7h4v7h-4z"/></svg></span><span class="m-t"><b>Leaderboard</b><small>Tournament ratings</small></span><svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg></button>
+    </div>
+    <div class="m-list">
+      <a class="m-row m-app" href="https://kingside-chess-app.sites.tab.bot/" target="_blank" rel="noopener"><span class="m-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.5l1.8-3.2a.6.6 0 0 0-1.1-.6l-1.9 3.2a11.4 11.4 0 0 0-8.9 0L5.7 5.7a.6.6 0 0 0-1.1.6l1.8 3.2A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.5zM7 15.3a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm10 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6z"/></svg></span><span class="m-t"><b>Get the Android app</b><small>Free download</small></span><svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"/></svg></a>
+    </div>
+    <p class="m-credits">Engines: <a href="https://github.com/nmrugg/stockfish.js" rel="noopener">Stockfish.js</a> 10 &amp; 19 Lite (GPLv3, <a href="engine/COPYING.txt">license</a>) · Openings &amp; puzzles: <a href="https://lichess.org" rel="noopener">Lichess</a> (CC0) · Rules: <a href="https://github.com/jhlywa/chess.js" rel="noopener">chess.js</a> · Pieces: Colin M.L. Burnett (GPLv2+), Armando H. Marroquin (merida, GPLv2+), Alexis Luengas (chessnut, Apache 2.0), Maurizio Monge (fantasy &amp; spatial, MIT) · <a href="CREDITS.txt">credits</a> · <a href="https://kingside-chess-app.sites.tab.bot/" rel="noopener" target="_blank">source code</a></p>
+    <div class="sheet-actions"><button type="button" class="btn btn-ghost" id="more-close">Close</button></div>
+  </div>
+</div>
+
+<!-- New game sheet -->
+<div class="sheet-backdrop" id="sheet-new" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="new-title">
+    <h2 id="new-title">New game</h2>
+    <p class="new-sub" id="new-sub"></p>
+    <div class="field">
+      <span class="label">Opponent</span>
+      <div class="seg" data-name="mode">
+        <button type="button" data-value="ai">vs Computer</button>
+        <button type="button" data-value="pvp">2 Players</button>
+        <button type="button" data-value="online">Online</button>
+      </div>
+    </div>
+    <div class="field ai-only bot-field">
+      <div class="seg seg-kind" data-name="kind">
+        <button type="button" data-value="bots">🤖 Bots</button>
+        <button type="button" data-value="levels">Levels 1–10</button>
+      </div>
+      <div class="bot-grid kind-bots" id="bot-grid" role="radiogroup" aria-label="Choose a bot"></div>
+      <div class="bot-info kind-bots" id="bot-info" aria-live="polite"></div>
+    </div>
+    <div class="field ai-only kind-levels">
+      <span class="label">Difficulty <b id="level-desc"></b></span>
+      <div class="seg seg-levels" data-name="level">
+        <button type="button" data-value="1" aria-label="Level 1: Beginner, about 250"><b>1</b><small>250</small></button>
+        <button type="button" data-value="2" aria-label="Level 2: Novice, about 500"><b>2</b><small>500</small></button>
+        <button type="button" data-value="3" aria-label="Level 3: Casual, about 800"><b>3</b><small>800</small></button>
+        <button type="button" data-value="4" aria-label="Level 4: Club, about 1100"><b>4</b><small>1100</small></button>
+        <button type="button" data-value="5" aria-label="Level 5: Intermediate, about 1400"><b>5</b><small>1400</small></button>
+        <button type="button" data-value="6" aria-label="Level 6: Advanced, about 1700"><b>6</b><small>1700</small></button>
+        <button type="button" data-value="7" aria-label="Level 7: Expert, about 2000"><b>7</b><small>2000</small></button>
+        <button type="button" data-value="8" aria-label="Level 8: Master, about 2300"><b>8</b><small>2300</small></button>
+        <button type="button" data-value="9" aria-label="Level 9: Grandmaster, about 2700"><b>9</b><small>2700</small></button>
+        <button type="button" data-value="10" aria-label="Level 10: Maximum, about 3000+"><b>10</b><small>3000+</small></button>
+      </div>
+    </div>
+    <div class="field online-only" hidden>
+      <p class="online-intro">Play a friend on their own phone. You get a link to send them on WhatsApp, and the game starts the moment they open it.</p>
+      <label class="label" for="online-name">Your name <b>(optional)</b></label>
+      <input class="text-in" id="online-name" type="text" maxlength="20" autocomplete="nickname" placeholder="e.g. Sonujeet">
+    </div>
+    <div class="field ai-only online-too">
+      <span class="label">Play as</span>
+      <div class="seg seg-pieces" data-name="color">
+        <button type="button" data-value="w"><img src="pieces/wK.svg" alt="">White</button>
+        <button type="button" data-value="r"><span class="half-king" aria-hidden="true"></span>Random</button>
+        <button type="button" data-value="b"><img src="pieces/bK.svg" alt="">Black</button>
+      </div>
+    </div>
+    <div class="field">
+      <span class="label">Clock</span>
+      <div class="seg seg-wrap" data-name="tc">
+        <button type="button" data-value="none">Unlimited</button>
+        <button type="button" data-value="1+0">1 + 0</button>
+        <button type="button" data-value="2+1">2 + 1</button>
+        <button type="button" data-value="3+2">3 + 2</button>
+        <button type="button" data-value="5+0">5 + 0</button>
+        <button type="button" data-value="10+0">10 + 0</button>
+        <button type="button" data-value="15+10">15 + 10</button>
+      </div>
+    </div>
+    <label class="toggle online-only rated-row" id="rated-row" hidden><input type="checkbox" id="opt-rated"><span>Rated game <small id="rated-why">counts for both ratings when your friend is signed in too</small></span></label>
+    <div class="sheet-actions">
+      <button type="button" class="btn btn-ghost" id="new-cancel">Cancel</button>
+      <button type="button" class="btn btn-gold" id="new-start">Start game</button>
+    </div>
+    <form class="join-form online-only" id="join-form" hidden>
+      <label class="label" for="join-code">Got a code from a friend?</label>
+      <div class="join-row">
+        <input class="text-in code-in" id="join-code" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="8" placeholder="ABC123" aria-label="Game code">
+        <button type="submit" class="btn btn-ghost" id="join-go">Join</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Share sheet (v1.7) -->
+<div class="sheet-backdrop" id="sheet-share" hidden>
+  <div class="sheet share-sheet" role="dialog" aria-modal="true" aria-labelledby="share-title">
+    <h2 id="share-title">Share your game</h2>
+    <div class="share-prev" id="share-prev"><div class="share-wait" id="share-wait"><span class="spin" aria-hidden="true"></span><span id="share-progress">Making your GIF…</span></div><img id="share-img" alt="Animated replay of the game" hidden></div>
+    <p class="share-info" id="share-info"></p>
+    <div class="share-btns">
+      <button type="button" class="btn btn-gold" id="share-gif" disabled>Share GIF</button>
+      <button type="button" class="btn btn-wa" id="share-wa" disabled>WhatsApp link</button>
+    </div>
+    <div class="share-btns">
+      <button type="button" class="btn btn-ghost" id="share-save" disabled>Save GIF</button>
+      <button type="button" class="btn btn-ghost" id="share-copy" disabled>Copy link</button>
+    </div>
+    <p class="share-link" id="share-link"></p>
+    <div class="sheet-actions"><button type="button" class="btn btn-ghost" id="share-close">Close</button></div>
+  </div>
+</div>
+
+<!-- Settings sheet -->
+<div class="sheet-backdrop" id="sheet-settings" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <h2 id="settings-title">Board settings</h2>
+    <div class="field">
+      <span class="label">Board</span>
+      <div class="seg seg-themes" data-name="theme">
+        <button type="button" data-value="walnut"><i class="sw sw-walnut"></i>Walnut</button>
+        <button type="button" data-value="emerald"><i class="sw sw-emerald"></i>Emerald</button>
+        <button type="button" data-value="slate"><i class="sw sw-slate"></i>Slate</button>
+        <button type="button" data-value="ocean"><i class="sw sw-ocean"></i>Ocean</button>
+        <button type="button" data-value="purple"><i class="sw sw-purple"></i>Purple</button>
+        <button type="button" data-value="coral"><i class="sw sw-coral"></i>Coral</button>
+        <button type="button" data-value="sandal"><i class="sw sw-sandal"></i>Sandalwood</button>
+        <button type="button" data-value="royal"><i class="sw sw-royal"></i>Royal Gold</button>
+        <button type="button" data-value="midnight"><i class="sw sw-midnight"></i>Midnight</button>
+      </div>
+    </div>
+    <div class="field">
+      <span class="label">Pieces</span>
+      <div class="seg seg-pieceset" data-name="pieces">
+        <button type="button" data-value="classic"><img src="pieces/wN.svg" alt="">Classic</button>
+        <button type="button" data-value="merida"><img src="pieces/merida/wN.svg" alt="">Merida</button>
+        <button type="button" data-value="chessnut"><img src="pieces/chessnut/wN.svg" alt="">Chessnut</button>
+        <button type="button" data-value="fantasy"><img src="pieces/fantasy/wN.svg" alt="">Fantasy</button>
+        <button type="button" data-value="spatial"><img src="pieces/spatial/wN.svg" alt="">Spatial</button>
+        <button type="button" data-value="gold"><img src="pieces/gold/wN.svg" alt="">Gold</button>
+        <button type="button" data-value="ruby"><img src="pieces/ruby/wN.svg" alt="">Ruby</button>
+      </div>
+    </div>
+    <label class="toggle"><input type="checkbox" id="opt-dests" checked><span>Show legal moves</span></label>
+    <label class="toggle"><input type="checkbox" id="opt-coords" checked><span>Show coordinates</span></label>
+    <label class="toggle"><input type="checkbox" id="opt-autoflip"><span>Auto-flip board in 2-player mode</span></label>
+    <label class="toggle"><input type="checkbox" id="opt-sound" checked><span>Move sounds</span></label>
+    <label class="toggle"><input type="checkbox" id="opt-premove" checked><span>Premoves (move while your opponent thinks)</span></label>
+    <p class="set-tip">Draw arrows: right-click and drag, or long-press a square and slide. Right-click or long-press one square to circle it.</p>
+    <div class="sheet-actions">
+      <button type="button" class="btn btn-gold" id="settings-done">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm / result sheet -->
+<div class="sheet-backdrop" id="sheet-result" hidden>
+  <div class="sheet result" role="dialog" aria-modal="true" aria-labelledby="result-title">
+    <div class="result-icon" id="result-icon"></div>
+    <h2 id="result-title">Game over</h2>
+    <p id="result-text"></p>
+    <p class="result-note" id="result-note"></p>
+    <div class="result-rating" id="result-rating" hidden></div>
+    <div class="result-btns">
+    <button type="button" class="btn btn-share" id="result-share"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.1c-.8 0-1.4.3-2 .8l-7.1-4.2c.1-.2.1-.5.1-.7s0-.5-.1-.7L16 7.2c.5.5 1.2.8 2 .8a3 3 0 1 0-3-3c0 .2 0 .5.1.7L8 9.8A3 3 0 1 0 8 14.2l7.1 4.2c0 .2-.1.4-.1.6a2.9 2.9 0 1 0 3-2.9z"/></svg>Share</button>
+    <button type="button" class="btn btn-review" id="result-review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>Game Review</button>
+    </div>
+    <div class="sheet-actions">
+      <button type="button" class="btn btn-ghost" id="result-close">View board</button>
+      <button type="button" class="btn btn-gold" id="result-again">Play again</button>
+    </div>
+  </div>
+</div>
+
+<!-- Online invite sheet -->
+<div class="sheet-backdrop" id="sheet-invite" hidden>
+  <div class="sheet invite" role="dialog" aria-modal="true" aria-labelledby="invite-title">
+    <h2 id="invite-title">Invite your friend</h2>
+    <p class="invite-color" id="invite-color"></p>
+    <div class="invite-code-box">
+      <span class="label">Game code</span>
+      <div class="invite-code" id="invite-code">------</div>
+      <div class="invite-link" id="invite-link"></div>
+    </div>
+    <a class="btn btn-wa" id="invite-wa" href="https://wa.me/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+      Share on WhatsApp
+    </a>
+    <div class="invite-row">
+      <button type="button" class="btn btn-ghost" id="invite-copy">Copy link</button>
+      <button type="button" class="btn btn-ghost" id="invite-share">More…</button>
+    </div>
+    <p class="invite-status" id="invite-status" role="status" aria-live="polite"></p>
+    <div class="sheet-actions">
+      <button type="button" class="btn btn-ghost" id="invite-close">View board</button>
+    </div>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="sheet-confirm" hidden>
+  <div class="sheet result" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+    <h2 id="confirm-title">Resign this game?</h2>
+    <p id="confirm-text">The game will be recorded as a loss.</p>
+    <div class="sheet-actions">
+      <button type="button" class="btn btn-ghost" id="confirm-no">Keep playing</button>
+      <button type="button" class="btn btn-danger" id="confirm-yes">Resign</button>
+    </div>
+  </div>
+</div>
+
+<!-- Account / profile screen -->
+<div class="rscreen ascreen" id="ascreen" hidden>
+  <header class="t-top">
+    <button class="icon-btn" id="a-back" type="button" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z"/></svg></button>
+    <h1 id="a-title">Profile</h1>
+    <span class="a-topspace"></span>
+  </header>
+  <main class="a-body" id="a-body"></main>
+</div>
+
+<!-- Quick match -->
+<div class="sheet-backdrop" id="sheet-quick" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="quick-title">
+    <h2 id="quick-title">⚡ Quick Match</h2>
+    <p class="quick-who" id="quick-who"></p>
+    <div class="quick-tcs quick-tcs6">
+      <button type="button" data-tc="1+0"><b>1 + 0</b><small>Bullet</small></button>
+      <button type="button" data-tc="2+1"><b>2 + 1</b><small>Bullet</small></button>
+      <button type="button" data-tc="3+2"><b>3 + 2</b><small>Blitz</small></button>
+      <button type="button" data-tc="5+0"><b>5 + 0</b><small>Blitz</small></button>
+      <button type="button" data-tc="10+0"><b>10 + 0</b><small>Rapid</small></button>
+      <button type="button" data-tc="15+10"><b>15 + 10</b><small>Rapid</small></button>
+    </div>
+    <div class="sheet-actions"><button type="button" class="btn btn-ghost" id="quick-cancel">Cancel</button></div>
+  </div>
+</div>
+<div class="seek" id="seek" hidden role="dialog" aria-live="polite">
+  <div class="seek-card">
+    <div class="seek-spin"><img src="pieces/wN.svg" alt=""></div>
+    <h2 id="seek-text">Finding an opponent…</h2>
+    <p class="seek-tc" id="seek-tc"></p>
+    <p class="seek-time" id="seek-time">0:00</p>
+    <p class="seek-online" id="seek-online"></p>
+    <div class="seek-fallback" id="seek-fallback" hidden>
+      <p>No one is free right now. Play the computer instead?</p>
+      <div class="a-row"><button type="button" class="btn btn-gold" id="seek-ai">Play the computer</button><button type="button" class="btn btn-ghost" id="seek-wait">Keep waiting</button></div>
+    </div>
+    <button type="button" class="btn btn-green seek-hide" id="seek-hide">Browse while searching</button>
+    <button type="button" class="btn btn-ghost seek-cancel" id="seek-cancel">Cancel</button>
+  </div>
+</div>
+<!-- v1.8.3: the search keeps running in the background; this bar stays pinned to the top while it does -->
+<div class="seekbar" id="seekbar" hidden role="status" aria-live="polite">
+  <div class="seekbar-row">
+    <button type="button" class="seekbar-open" id="seekbar-open" aria-label="Open the search"><span class="seekbar-dot" aria-hidden="true"></span><span class="seekbar-label">Finding opponent</span> <b class="seekbar-time" id="seekbar-time" data-i18n-skip>0:00</b> <small class="seekbar-tc" id="seekbar-tc"></small></button>
+    <button type="button" class="seekbar-x" id="seekbar-x" aria-label="Cancel search" title="Cancel search">✕</button>
+  </div>
+  <div class="seekbar-offer" id="seekbar-offer" hidden>
+    <p>No one is free right now. Play the computer instead?</p>
+    <div class="a-row"><button type="button" class="btn btn-gold" id="seekbar-ai">Play the computer</button><button type="button" class="btn btn-ghost" id="seekbar-wait">Keep waiting</button></div>
+  </div>
+</div>
+<!-- v1.8.3: a match found from any screen -->
+<div class="match-found" id="match-found" hidden role="alertdialog" aria-labelledby="mf-title">
+  <div class="mf-card">
+    <div class="mf-ring" id="mf-ring"><img id="mf-piece" src="pieces/wK.svg" alt=""><b id="mf-count" data-i18n-skip>4</b></div>
+    <h2 id="mf-title">Match found!</h2>
+    <p class="mf-sub" id="mf-sub"></p>
+    <p class="mf-note">The game opens in a moment.</p>
+    <div class="a-row"><button type="button" class="btn btn-gold" id="mf-play">Play now</button><button type="button" class="btn btn-ghost" id="mf-decline">Decline</button></div>
+  </div>
+</div>
+
+<!-- Friend challenges -->
+<div class="sheet-backdrop" id="sheet-chal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="chal-title">
+    <h2 id="chal-title">⚔️ Challenge</h2>
+    <label class="toggle chal-rated"><input type="checkbox" id="chal-rated" checked><span>Rated <small>(not for “No clock”)</small></span></label>
+    <div class="seg chal-colors"><button type="button" data-color="w">White</button><button type="button" data-color="r" class="on">Random</button><button type="button" data-color="b">Black</button></div>
+    <div class="quick-tcs quick-tcs6">
+      <button type="button" data-tc="1+0"><b>1 + 0</b><small>Bullet</small></button>
+      <button type="button" data-tc="3+2"><b>3 + 2</b><small>Blitz</small></button>
+      <button type="button" data-tc="5+0"><b>5 + 0</b><small>Blitz</small></button>
+      <button type="button" data-tc="10+0"><b>10 + 0</b><small>Rapid</small></button>
+      <button type="button" data-tc="15+10"><b>15 + 10</b><small>Rapid</small></button>
+      <button type="button" data-tc="none"><b>No clock</b><small>Casual</small></button>
+    </div>
+    <div class="sheet-actions"><button type="button" class="btn btn-ghost" id="chal-cancel">Cancel</button></div>
+  </div>
+</div>
+<div class="topbar-note chal-wait" id="chal-wait" hidden><span id="chal-wait-text"></span><button type="button" class="btn btn-ghost btn-sm" id="chal-wait-cancel">Cancel</button></div>
+<div class="topbar-note challenge-bar" id="challenge-bar" hidden role="alert"><span id="challenge-text"></span><span class="cb-btns"><button type="button" class="btn btn-ghost btn-sm" id="challenge-no">Decline</button><button type="button" class="btn btn-review btn-sm" id="challenge-yes">Accept</button></span></div>
+
+<!-- Puzzles screen -->
+<div class="rscreen pscreen" id="pscreen" hidden>
+  <header class="t-top">
+    <button class="icon-btn" id="p-back" type="button" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z"/></svg></button>
+    <h1 id="p-title">Puzzles</h1>
+    <span class="p-chip" title="Your puzzle rating"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.7 2.7 0 0 1 0 5.4H2V20a2 2 0 0 0 2 2h3.8v-1.5a2.7 2.7 0 0 1 5.4 0V22H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg><b id="p-rating">1200</b></span>
+  </header>
+  <div class="r-main">
+    <div class="p-home" id="p-body"></div>
+    <div class="p-solve" id="p-solve" hidden>
+      <section class="r-boardcol"><div class="rush-bar" id="rush-bar" hidden><span class="rb-time" id="rb-time">3:00</span><span class="rb-score"><small>Solved</small><b id="rb-score">0</b></span><span class="rb-strikes" id="rb-strikes" aria-label="Strikes"><i></i><i></i><i></i></span></div><div class="r-board p-boardwrap" id="p-board"></div></section>
+      <section class="r-panel">
+        <div class="p-feedback" id="p-feedback" role="status" aria-live="polite"></div>
+        <div class="p-actions" id="p-actions"></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+<!-- Learn screen (lessons) -->
+<div class="rscreen pscreen lscreen" id="lscreen" hidden>
+  <header class="t-top">
+    <button class="icon-btn" id="l-back" type="button" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z"/></svg></button>
+    <h1 id="l-title">Learn</h1>
+    <span class="p-chip l-chipwrap" title="Lessons finished"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg><span id="l-chip">0/35</span></span>
+  </header>
+  <div class="r-main">
+    <div class="p-home l-home" id="l-home"></div>
+    <div class="p-solve l-lesson" id="l-lesson" hidden>
+      <section class="r-boardcol"><div class="r-board p-boardwrap" id="l-board"></div></section>
+      <section class="r-panel">
+        <div class="l-dots" id="l-dots" aria-hidden="true"></div>
+        <div class="l-text" id="l-text" data-i18n-skip></div>
+        <div class="p-feedback l-fb" id="l-fb" role="status" aria-live="polite"></div>
+        <div class="p-actions l-actions" id="l-actions"></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Game Review screen -->
+<div class="rscreen" id="rscreen" hidden>
+  <header class="t-top">
+    <button class="icon-btn" id="r-back" type="button" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z"/></svg></button>
+    <h1>Game Review</h1>
+    <button class="icon-btn" id="r-share" type="button" aria-label="Share this game" title="Share"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.1c-.8 0-1.4.3-2 .8l-7.1-4.2c.1-.2.1-.5.1-.7s0-.5-.1-.7L16 7.2c.5.5 1.2.8 2 .8a3 3 0 1 0-3-3c0 .2 0 .5.1.7L8 9.8A3 3 0 1 0 8 14.2l7.1 4.2c0 .2-.1.4-.1.6a2.9 2.9 0 1 0 3-2.9z"/></svg></button>
+    <button class="icon-btn" id="r-flip" type="button" aria-label="Flip board" title="Flip board"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 17.01V10h-2v7.01h-3L15 21l4-3.99h-3zM9 3 5 6.99h3V14h2V6.99h3L9 3z"/></svg></button>
+  </header>
+  <div class="r-main">
+    <section class="r-boardcol" aria-label="Review board">
+      <div class="r-player" id="r-ptop"></div>
+      <div class="r-boardrow">
+        <div class="evalbar" id="r-evalbar" aria-hidden="true"><div class="evalfill" id="r-evalfill"></div><span class="evaltxt" id="r-evaltxt"></span></div>
+        <div class="r-board" id="r-board"></div>
+      </div>
+      <div class="r-player" id="r-pbottom"></div>
+    </section>
+    <section class="r-panel" aria-label="Review">
+      <div class="r-progress" id="r-progress" hidden><div class="r-progress-bar"><div id="r-progress-fill"></div></div><span id="r-progress-text"></span></div>
+      <div class="r-coach" id="r-coach" role="status" aria-live="polite"></div>
+      <div class="r-nav">
+        <button type="button" class="ctl" id="r-first" aria-label="First move"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
+        <button type="button" class="ctl" id="r-prev" aria-label="Previous move"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg></button>
+        <button type="button" class="ctl r-nextbtn" id="r-next" aria-label="Next move"><svg viewBox="0 0 24 24"><path d="M8.6 16.6 10 18l6-6-6-6-1.4 1.4 4.6 4.6z"/></svg></button>
+        <button type="button" class="ctl" id="r-last" aria-label="Last move"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+      </div>
+      <div class="r-graph" id="r-graph" title="Evaluation graph: tap to jump"></div>
+      <div class="r-card r-summary" id="r-summary"></div>
+      <div class="r-card"><ol class="r-moves" id="r-moves" aria-label="Moves"></ol></div>
+    </section>
+  </div>
+</div>
+
+<!-- Tournaments screen -->
+<div class="tscreen" id="tscreen" hidden>
+  <header class="t-top">
+    <button class="icon-btn" id="t-back" type="button" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z"/></svg></button>
+    <h1 id="t-title">Tournaments</h1>
+    <button class="icon-btn" id="t-lbtop" type="button" aria-label="Leaderboard" title="Leaderboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10h4v10H4zm6 0V4h4v16h-4zm6 0v-7h4v7h-4z"/></svg></button>
+  </header>
+  <main class="t-body" id="t-body"></main>
+</div>
+<div class="sheet-backdrop" id="t-sheet" hidden><div class="sheet result" role="dialog" aria-modal="true"></div></div>
+<canvas class="confetti" id="confetti" hidden aria-hidden="true"></canvas>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<noscript><p class="noscript">Kingside Chess needs JavaScript to play.</p></noscript>
+</body>
+</html>

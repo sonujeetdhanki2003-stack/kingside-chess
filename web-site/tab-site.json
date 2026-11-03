@@ -1,0 +1,15 @@
+{
+ "kind": "worker",
+ "entry": "worker.mjs",
+ "bindings": [
+  {
+   "type": "d1",
+   "name": "DB"
+  }
+ ],
+ "worker": {
+  "compatibility_date": "2026-08-01",
+  "html_handling": "auto-trailing-slash",
+  "not_found_handling": "none"
+ }
+}

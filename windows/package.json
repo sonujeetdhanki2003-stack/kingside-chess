@@ -1,0 +1,62 @@
+{
+ "name": "kingside-chess",
+ "productName": "Kingside Chess",
+ "version": "1.9.0",
+ "description": "Kingside Chess for Windows",
+ "author": "Kingside Chess",
+ "main": "main.js",
+ "license": "UNLICENSED",
+ "build": {
+  "appId": "bot.tab.kingsidechess",
+  "productName": "Kingside Chess",
+  "copyright": "Kingside Chess",
+  "asar": true,
+  "files": [
+   "main.js",
+   "www/**/*",
+   "build/icon.png",
+   "package.json"
+  ],
+  "directories": {
+   "output": "dist",
+   "buildResources": "build"
+  },
+  "win": {
+   "target": [
+    {
+     "target": "nsis",
+     "arch": [
+      "x64"
+     ]
+    }
+   ],
+   "icon": "build/icon.ico",
+   "executableName": "KingsideChess",
+   "artifactName": "KingsideChess-${version}-${arch}.${ext}"
+  },
+  "nsis": {
+   "oneClick": false,
+   "perMachine": false,
+   "allowToChangeInstallationDirectory": true,
+   "createDesktopShortcut": true,
+   "createStartMenuShortcut": true,
+   "shortcutName": "Kingside Chess",
+   "artifactName": "KingsideChess-Setup-${version}.${ext}",
+   "installerIcon": "build/icon.ico",
+   "uninstallerIcon": "build/icon.ico",
+   "runAfterFinish": true
+  },
+  "linux": {
+   "target": [
+    "dir"
+   ],
+   "icon": "build/icon.png",
+   "executableName": "kingside-chess"
+  },
+  "compression": "maximum",
+  "electronLanguages": [
+   "en-US",
+   "hi"
+  ]
+ }
+}

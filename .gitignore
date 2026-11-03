@@ -1,0 +1,21 @@
+# secrets: never commit
+*.keystore
+*.jks
+*PRIVATE*
+.env
+.env.*
+*.pem
+*.p12
+butler_creds
+# dependencies and build outputs
+node_modules/
+.gradle/
+android/build/
+dist/
+out/
+*.apk
+*.aab
+*.exe
+*.zip
+*.log
+.DS_Store

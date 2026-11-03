@@ -1,0 +1,6 @@
+Piece sets (from the Lichess project, https://github.com/lichess-org/lila):
+- classic (cburnett): Colin M.L. Burnett, GPLv2+ / CC BY-SA 3.0
+- merida: Armando Hernandez Marroquin, GPLv2+
+- chessnut: Alexis Luengas, Apache 2.0
+- fantasy, spatial: Maurizio Monge, MIT
+- gold, ruby: recoloured cburnett (Colin M.L. Burnett), GPLv2+ / CC BY-SA 3.0, recoloured for Kingside Chess v1.8
