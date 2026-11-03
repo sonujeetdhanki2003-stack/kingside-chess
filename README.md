@@ -61,7 +61,7 @@ Ready-made builds (APK and Windows installer) are on the [Releases](../../releas
 
 ## License
 
-Kingside Chess is free software under the **GNU GPL v3** ([LICENSE-GPLv3.txt](LICENSE-GPLv3.txt)); it bundles Stockfish (GPLv3). Piece sets, sounds and other assets are credited with their licences in [CREDITS.txt](CREDITS.txt).
+**License: GPL-3.0 © 2026 Sonujeet Dhanki.** Kingside Chess is free software under the GNU GPL v3 ([LICENSE](LICENSE)). Stockfish is by the Stockfish developers (GPLv3), and the piece sets, sounds and other assets are by their respective authors, credited with their licences in [CREDITS.txt](CREDITS.txt).
 
 ---
 

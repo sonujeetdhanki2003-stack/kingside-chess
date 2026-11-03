@@ -1,3 +1,4 @@
+// Kingside Chess — Copyright (C) 2026 Sonujeet Dhanki. Licensed under the GNU GPL v3 (see LICENSE).
 import { Chess } from './vendor/chess.js';
 import { pieceUrl } from './board.js';
 import { Engine, fallbackMove } from './engine.js';

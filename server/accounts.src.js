@@ -1,3 +1,4 @@
+// Kingside Chess — Copyright (C) 2026 Sonujeet Dhanki. Licensed under the GNU GPL v3 (see LICENSE).
 // Accounts, profiles, game history, quick match, friends and chat for Kingside Chess.
 // Passwords: PBKDF2-SHA256 with a per-user salt. Sessions: random tokens in D1. Login is rate-limited.
 import { Chess } from '../site/vendor/chess.js';

@@ -1,3 +1,4 @@
+// Kingside Chess — Copyright (C) 2026 Sonujeet Dhanki. Licensed under the GNU GPL v3 (see LICENSE).
 package com.sonujeet.kingside;
 
 import android.annotation.SuppressLint;

@@ -1,3 +1,4 @@
+// Kingside Chess — Copyright (C) 2026 Sonujeet Dhanki. Licensed under the GNU GPL v3 (see LICENSE).
 // Kingside Chess for Windows (Electron). Like the Android app: the window opens the game's own address,
 // every page file (HTML, JS, Stockfish WASM, pieces, puzzles) is answered from the files bundled in the app,
 // and only /api/ (online play, accounts, tournaments) goes to the live server.

@@ -1,3 +1,4 @@
+// Kingside Chess — Copyright (C) 2026 Sonujeet Dhanki. Licensed under the GNU GPL v3 (see LICENSE).
 // Kingside Chess online rooms: a tiny authoritative game server on the site's own Worker.
 // State lives in D1 (one row per room). Clients long-poll /api/poll; every move is validated with chess.js here.
 import { Chess } from '../site/vendor/chess.js';
